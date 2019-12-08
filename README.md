@@ -2,7 +2,7 @@
 Using some ways to predict peak load value.
 ### Autoregressive Integrated Moving Average model(ARIMA):
 ```
-I try it to predict for specific weekday (ex:trained by every Monday or Tuesday)
+I try it to predict specific weekday (ex:trained by every Monday or Tuesday )
 ```
 ![image](https://github.com/Larix/Peak-Load-Forecasting/blob/master/img/arima_rss.png)
 ![image](https://github.com/Larix/Peak-Load-Forecasting/blob/master/img/arima_rmse.png)
@@ -10,7 +10,7 @@ I try it to predict for specific weekday (ex:trained by every Monday or Tuesday)
 
 ### LSTM:
 ```
-I use lstm to predict for long times data (trained by consecutive days)
+I use lstm to predict long times data (trained by consecutive days)
 ```
 ![image](https://github.com/Larix/Peak-Load-Forecasting/blob/master/img/lstm_loss.png)
 ![image](https://github.com/Larix/Peak-Load-Forecasting/blob/master/img/lstm_prediction.png)
