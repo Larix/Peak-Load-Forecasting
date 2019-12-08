@@ -26,25 +26,13 @@ def load_raw_data_to_process():
     weekday_df = convert_to_weekday_form(df, 'peak')
 
     #show_data_fig(df, weekday_df)
-    return weekday_df
-
-def auto_regression(ts_log_diff):
-    from statsmodels.tsa.ar_model import AR
-    from random import random
-    model = AR(ts_log_diff)
-    model_fit = model.fit()
-
-
-    plt.plot(ts_log_diff)
-    plt.plot(model_fit.fittedvalues, color='red')
-    plt.title('RSS: %.4f'% np.nansum((model_fit.fittedvalues-ts_log_diff)**2))
-    plt.show()
+    return df, weekday_df
 
 def smoothing(weekday_df):
     ts_log = np.log(weekday_df)
 
     moving_avg = ts_log.rolling(4).mean()
-    ts_log_diff = ts_log - ts_log.shift()
+    ts_log_diff = ts_log - ts_log.shift(periods=1)
     ts_log_diff.dropna(inplace=True)
     
     ### check stationarity ###
@@ -54,7 +42,7 @@ def smoothing(weekday_df):
     #plt.plot(ts_log_diff.peak_Mon)
     #plt.show()
     #test_stationarity(ts_log_diff.peak_Mon)
-    return ts_log_diff
+    return ts_log, ts_log_diff
 
 def test_stationarity(timeseries):
     #Determing rolling statistics
@@ -131,8 +119,3 @@ def find_anomalies(random_data):
         if outlier > upper_limit or outlier < lower_limit:
             anomalies.append(outlier)
     return anomalies
-
-if __name__ == '__main__':
-    weekday_df = load_raw_data_to_process()
-    weekday_df_log_diff = smoothing(weekday_df)
-    auto_regression(weekday_df_log_diff.peak_Mon)

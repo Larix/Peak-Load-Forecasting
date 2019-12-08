@@ -79,9 +79,9 @@ if __name__ == '__main__':
     reverse_transformations(model, df_log.peak, df, df_log_diff.peak[12:])
     '''
     weekday_df_log, weekday_df_log_diff = smoothing(weekday_df)
-    #ar = auto_regression(weekday_df_log_diff.peak_Sat*-1)
-    arma = ari_moving_average(weekday_df_log_diff.peak_Sat[:-6]*-1)
-    reverse_transformations(arma, weekday_df_log.peak_Sat, weekday_df, weekday_df_log_diff)
+    #ar = auto_regression(weekday_df_log_diff.peak_Mon*-1)
+    arma = ari_moving_average(weekday_df_log_diff.peak_Mon[:-6]*-1)
+    reverse_transformations(arma, weekday_df_log.peak_Mon, weekday_df, weekday_df_log_diff)
 
     #auto_regression(weekday_df_log_diff.peak_Mon)
     #auto_regression(weekday_df_log_diff.peak_Tue)
